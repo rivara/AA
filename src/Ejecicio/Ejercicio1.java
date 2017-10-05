@@ -1,29 +1,43 @@
+package Ejecicio;
+
+public class Ejercicio1 {
 
 /**
- * Write a description of class ArbolesRecubrimientoCosteMinimo here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ricardo Valle Ramirez
  */
-public class ejercicio1
-{
+//Algoritmo de ordenacion de cs (valor de los arcos)
+	public static int[] ordenarEnIndices (int[] v) {
+		int[] v2 = new int[v.length];
+		v2[0] = 0;
+		for (int i=1; i<v.length; i++) {
+		int aux = v[i];
+		int j;
+		for (j=i-1; j>=0 && v[v2[j]]>aux; j--)
+		v2[j+1] = v2[j];
+		v2[j+1] = i;
+		}
+		return v2;
+		}
 
-       public static int Kruskal1 (int[] us, int[] vs, int[] costes, int n) {
-      // calcula el coste mÃ­nimo y los arcos correspondientes
+	//Algoritmo original
+
+    public static int Kruskal1 (int[] us, int[] vs, int[] cs, int n) {
+      // calcula el coste mínimo y los arcos correspondientes
       // grafo como lista de adyacencia
       // presupone que los arcos vienen ordenados en orden creciente de coste
-      // vectores que representan los arcos del MST (orgenes y destinos)
+      // vectores que representan los arcos del MST (origenes y destinos)
       int[] orig = new int[n-1];
       int[] dest = new int[n-1];
       int a = 0;
       int coste = 0;
-      // representacin implcita del bosque de nodos que forman el MST
+      // representacion implicita del bosque de nodos que forman el MST
       int[] conjs = new int[n];
       for (int i=0; i<n; i++)
          conjs[i] = i;
       // bucle voraz
       for (int i=0; i<us.length && a<n; i++) {
-         // se selecciona el arco mï¿½s corto
+         // se selecciona el arco mas corto
          int u = us[i];
          int v = vs[i];
          // se halla el conjunto disjunto de sus nodos
@@ -34,7 +48,7 @@ public class ejercicio1
             orig[a] = u;
             dest[a] = v;
             a++;
-            coste += costes[i];
+            coste += cs[i];
             // se fusionan
             int min = Math.min (conju, conjv);
             int max = Math.max (conju, conjv);
@@ -53,6 +67,24 @@ public class ejercicio1
       for (int i=0; i<orig.length; i++)
          System.out.println ("Arco "+i+": ("+orig[i]+","+dest[i]+")");
    }
+   
+   
+
+   public static void main(String[] args) {
+       
+	  /* int us[]={0,0,0,1,1,2,2,3}; 
+	   int vs[]={1,2,4,3,4,3,4,4};  
+	   int cs[]={16,12,21,6,11,18,33,14};
+	   int n=0; */
+	   
+	   int us[]={2,1,2,0,0}; 
+	   int vs[]={3,3,1,2,1};  
+	   int cs[]={6,3,5,4,2};
+	   int n=4;
+	   int a=Kruskal1(us,vs,cs,n);
+	  System.out.println(a +"++");
+   }
       
 
 }
+
