@@ -5,14 +5,25 @@ public class Ejercicio2 {
 	public static int sedes1 (int[] c0, int[] c1, int f) {
 	//int[] result= new int[f+c0.length+c1.length];
 	int result=0;
+	boolean esta=false;
 		for(int d =0; d < c0.length; d ++ ) {
 			
 			//if a >b coge a
 			if(c0[d]<=c1[d]) {
 				result=result+c0[d];
+				esta=false;
 			}else {
-				result=result+f;
+				if(esta) {
+					result=result+c0[d];
+					esta=true;
+				}else {
+					
+				}
 			}
+		}
+			
+			
+			/*
 			//suma 
 			// if a<b coge b
 			if(c0[d]>c1[d]) {
@@ -22,7 +33,7 @@ public class Ejercicio2 {
 			}
 			//suma
 			result=result+f;
-		}
+		}*/
 		
 		return result;
 	}
