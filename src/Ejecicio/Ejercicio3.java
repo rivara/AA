@@ -13,7 +13,7 @@ public class Ejercicio3 {
 
 	private static int buscarOptima(int etapa, int fin, int[] solActual,int valorActual, int[] solOptima, int valorOptimo) {
 		int valor;
-		for (int k = 0; k < solActual.length - 1; k++) {
+		for (int k = 0; k < solActual.length ; k++) {
 			
 				if (etapa == fin) {
 					//FILTRADO 
@@ -23,6 +23,7 @@ public class Ejercicio3 {
 							valorOptimo+=valorActual;
 						}*/
 					System.out.println(solActual[k]+"-"+solOptima[k]);
+					System.out.println("--"+valorActual+"-"+valorOptimo);
 					} else {
 						
 						//se desarrollan todas las ramas
