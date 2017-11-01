@@ -1,5 +1,6 @@
 package Ejecicio;
 
+
 public class Ejercicio2 {
 	/* H1 */
 	public static int sedes1(int[] c0, int[] c1, int f) {
