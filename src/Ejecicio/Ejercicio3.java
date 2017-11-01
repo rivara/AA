@@ -4,7 +4,7 @@ public class Ejercicio3 {
 
 	public static void sedes(int[] c0, int[] c1, int f) {
 		int etapa = 0;
-		int algo=buscarOptima(etapa, c1.length, c1, 0, c0,0);
+		int algo=buscarOptima(etapa, c1.length, c1, 1, c0,0);
 		System.out.println(algo);
 
 	}
@@ -14,13 +14,14 @@ public class Ejercicio3 {
 	private static int buscarOptima(int etapa, int fin, int[] solActual,int valorActual, int[] solOptima, int valorOptimo) {
 		int valor;
          //hacemos el bucle hasta qu encontramos la mejor opcion
-		for (int k = 0; k < solActual.length &&  valorOptimo<15; k++) {
+		for (int k = 0; k < solActual.length ; k++) {
+			System.out.println(etapa);
 			if (k-1>-1 ) {// es factible si la suma es mayor 
-				if (etapa == fin) {
+				if (etapa == fin) { 
 					//PODA 
-					
+				
 					//si es optimo mas pequeño se coge el optimo
-					if(solActual[k]>solOptima[k]) {	
+					/*if(solActual[k]>solOptima[k]) {	
 						// se comprueba antecedentes si es el mismo no se le suma nada 
 						if(solOptima[k-1]!=valorActual){
 						// System.out.println(solOptima[k-1]+"-"+valorActual);
@@ -28,6 +29,7 @@ public class Ejercicio3 {
 							
 						}
 							valorActual=solOptima[k];
+							 System.out.println("-"+valorActual);
 							valorOptimo+=valorActual;
 						}
 					///si no escojemos 
@@ -40,12 +42,13 @@ public class Ejercicio3 {
 						}
 						//se mete en optimo el mejor y en actual tb
 						 valorActual=solActual[k];
+						 System.out.println("-"+valorActual);
 						 valorOptimo+=valorActual;
-					}
+					}*/
 					
-					
+					 valorOptimo+=1;
 					} else {
-						
+						 System.out.println("**********");
 						//se desarrollan todas las ramas
 						valorOptimo = buscarOptima(etapa + 1, fin, solActual,valorActual, solOptima, valorOptimo);
 						// <<borrarlo de solActual y restaurar valorActual>>;
