@@ -65,6 +65,35 @@ public class Ejercicio3_1_a {
 		return coste;
 
 	}
+	
+	
+	 private static int buscar1Nueva (int[][] coste,int i, int f,int[] solParc, int cParc, int[] solOpt, int cOpt) {
+			// versión basada en el esquema de la técnica de vuelta atrás para solución óptima   
+				   	   for (int j=0; j<coste.length; j++)
+				   	   {
+				   		   //nodos++;
+				   		   solParc[i] = j;
+			   			   int gasto= coste[j][i];
+			   			   if(i > 0 && solParc[i-1]!=j) //Si hay traslado
+				   			   gasto += f;
+			   			   
+			   			   cParc += gasto;
+			   			   
+				   		   if (i==solOpt.length-1) {
+				   			   if (cParc<cOpt) {
+				   				   cOpt = cParc;
+				   				   for (int k=0; k<solParc.length; k++)
+										solOpt[k] = solParc[k];
+				   			   }
+				   		   }
+				   		   else 
+				   			   cOpt = buscar1Nueva (coste, i+1, f, solParc, cParc, solOpt, cOpt);
+				   		   
+				   		   cParc -= gasto;  
+		  		   	   }
+				   	   return cOpt;
+		   }
+			   
 
 	private static void imprimir(int[] c0, int[] c1, int f) {
 		int[] solActualial = new int[c0.length];

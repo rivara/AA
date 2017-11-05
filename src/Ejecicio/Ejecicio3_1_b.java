@@ -24,7 +24,7 @@ class Ejecicio3_1_b {
 			int[] solParc, int cParcial, int[] solOpt, int cOpt, int cota) {
 		// Se recorren las dos sedes existentes
 		for (int j = 0; j < 2; j++) {
-			solParc[i] = j;
+			solParc[etapa] = j;
 			// Calculamos la cota en cada nivel
 			int nCota = calcCota(c0, c1, f, solParc, etapa);
 			/*
@@ -58,10 +58,10 @@ class Ejecicio3_1_b {
 							solOpt, cOpt, cota);
 				// Restamos el valor correspondiente, para continuar con otra
 				// rama
-				cParcial -= coste(c0, c1, f, solParc, i);
+				cParcial -= coste(c0, c1, f, solParc, etapa);
 			} else {
 				System.out.print("Poda con cota: " + nCota + ". Estado: ");
-				imprimir2(solParc, i);
+				imprimir2(solParc, etapa);
 			}
 		}
 		return cOpt;
@@ -92,17 +92,17 @@ class Ejecicio3_1_b {
 		return min;
 	}
 
-	private static int coste(int[] c0, int[] c1, int f, int[] solParcial, int i) {
+	private static int coste(int[] c0, int[] c1, int f, int[] solParcial, int etapa) {
 		/* Setapa estamos en la sede 0, asignamos a coste el valor correspondiente */
 		int coste = 0;
-		if (solParcial[i] == 0) {
-			coste = c0[i];
+		if (solParcial[etapa] == 0) {
+			coste = c0[etapa];
 			/*
 			 * Controlar setapa es necesario sumar cambio de sede, comparando setapa la
 			 * sede actual es igual a la anterior o setapa estamos en el primer
 			 * nivel
 			 */
-			if ((etapa != 0) && (solParcial[i] != solParcial[etapa - 1])) {
+			if ((etapa != 0) && (solParcial[etapa] != solParcial[etapa - 1])) {
 				coste += f;
 			}
 			/*
@@ -110,13 +110,13 @@ class Ejecicio3_1_b {
 			 * correspondiente
 			 */
 		} else {
-			coste = c1[i];
+			coste = c1[etapa];
 			/*
 			 * Controlar setapa es necesario sumar cambio de sede, comparando setapa la
 			 * sede actual es igual a la anterior o setapa estamos en el primer
 			 * nivel
 			 */
-			if ((etapa != 0) && (solParcial[i] != solParcial[etapa - 1])) {
+			if ((etapa != 0) && (solParcial[etapa] != solParcial[etapa - 1])) {
 				coste += f;
 			}
 		}
@@ -124,18 +124,80 @@ class Ejecicio3_1_b {
 	}
 
 	private static void imprimir(int[] v) {
-		for (int etapa = 0; etapa < v.length; i++)
-			System.out.print(v[i] + " ");
+		for (int etapa = 0; etapa < v.length; etapa++)
+			System.out.print(v[etapa] + " ");
 		System.out.println();
 	}
 
 	private static void imprimir2(int[] v, int k) {
-		for (int etapa = 0; etapa <= k; i++)
+		for (int etapa = 0; etapa <= k; etapa++)
 			System.out.print(v[etapa] + " ");
-		for (int etapa = k + 1; etapa < v.length; i++)
+		for (int etapa = k + 1; etapa < v.length; etapa++)
 			System.out.print("- ");
 		System.out.println();
 	}
+	
+	
+	
+	
+	 private static int buscar2_Nueva (int[][] coste, int i, int f, int[] solParc, int cParc, int[] solOpt, int cOpt, int cota) 
+	   {
+		   		// versión de ramificación y poda, tomando como cota inferior el coste mínimo de costes de sedes sin traslado
+		   			
+		   		for (int j=0; j<coste.length; j++)
+		   			{
+		   				solParc[i] = j;
+		   				
+		   				int nCota = calcularCota_Nueva (coste, solParc, i);
+		   				
+		   				if (nCota < cOpt) 
+		   				{
+		   					//nodos++;
+		   					
+		   					int gasto=coste[j][i];
+		   					
+		   					if(i > 0 && solParc[i-1]!=j) //Si hay traslado
+		 		   			   gasto += f;
+		   					
+		   					cParc += gasto;
+		   					
+		   					if (i==solOpt.length-1) 
+		   					{
+		   						if (cParc<cOpt) 
+		   						{
+		   							cOpt = cParc;
+		   							for (int k=0; k<solParc.length; k++)
+		   								solOpt[k] = solParc[k];
+		   							System.out.print ("Nuevo coste mínimo: "+cOpt+". Estado: ");
+		   							imprimir (solOpt);
+		   						}
+		   					}
+		   					else 
+		   						cOpt = buscar2_Nueva (coste, i+1, f, solParc, cParc, solOpt, cOpt, cota);
+		   					
+		   					cParc -= gasto;
+		   				}
+		   			}
+		   		return cOpt;
+	   }
+	   
+	   private static int calcularCota_Nueva (int[][] coste, int[] solParcial, int i) {
+		      int cota = 0;
+		      for (int j=0; j<=i; j++)
+		         cota += coste[solParcial[j]][j];
+		      for (int j=i+1; j<solParcial.length; j++)
+		         cota += minimoNuevo (coste,j);
+		      return cota;
+	   }
+	   
+	   private static int minimoNuevo (int[][] coste,int j) {
+		      int min = Integer.MAX_VALUE;
+		      
+		      for (int i=0; i<coste.length; i++)
+		         if (coste[i][j]<min)
+		            min = coste[i][j];
+		      return min;
+	   }
 
 	public static void main(String[] args) {
 		
