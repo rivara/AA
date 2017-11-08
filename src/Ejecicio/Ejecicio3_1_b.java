@@ -4,18 +4,33 @@ class Ejecicio3_1_b {
 
 
 	public static int sedes_RyP(int[] c0, int[] c1, int f) {
-		int[] solParcial = new int[c0.length];
+		/*int[] solParcial = new int[c0.length];
 		int[] solOptima = new int[c0.length];
+		int coste[][]={c0, c1};  
+	
 		// Calculamos la cota
 		int cota = calcCota(c0, c1, f, solParcial, 0);
 		System.out.println("Cota inicial: " + cota
 				+ ". Coste mínimo inicial: 0");
 		int cOpt = buscarSedes_RyP(c0, c1, f, 0, solParcial, 0, solOptima,Integer.MAX_VALUE, cota);
-		//(c0, c1, f, etapa + 1, solActual,valorActual, solOptima, valorOptimo);
-		System.out.print("Solución óptima: ");
-		imprimir(solOptima);
-		System.out.println();
-		return cOpt;
+	
+		//(c0, c1, f, etapa + 1, solActual,valorActual, solOptima, valorOptimo);*/
+	
+	     ///////////////////////////////
+		//////////////////////////////
+		
+		 int[] solParcial = new int[c0.length];
+	      int[] solOptima = new int[c0.length];
+	      int coste[][]={c0, c1};
+	      
+	      int cota = calcularCota_Nueva (coste, solParcial, -1);
+	      
+	      System.out.println ("Cota inicial: "+cota+". Coste mínimo inicial: 0");
+	      int cOpt2 = buscar2_Nueva (coste, 0, f, solParcial, 0, solOptima, Integer.MAX_VALUE, cota);
+	      System.out.println("Número de nodos creados durante la búsqueda: " );
+	      System.out.print ("Solución óptima: "); imprimir (solOptima); //System.out.println();
+	     // return cOpt;
+		return cOpt2;
 	}
 
 
@@ -28,7 +43,7 @@ class Ejecicio3_1_b {
 			// Calculamos la cota en cada nivel
 			int nCota = calcCota(c0, c1, f, solParc, etapa);
 			/*
-			 * Evaluamos setapa la cota es menor que el mejor candidato hasta el
+			 * Evaluamos etapa la cota es menor que el mejor candidato hasta el
 			 * momento. En caso de ser mayor, no continuará la evaluación,
 			 * podando la rama
 			 */
@@ -44,9 +59,9 @@ class Ejecicio3_1_b {
 						cOpt = cParcial;
 						for (int k = 0; k < solParc.length; k++)
 							solOpt[k] = solParc[k];
-						System.out.print("Nuevo coste mínimo: " + cOpt
+					/*	System.out.print("Nuevo coste mínimo: " + cOpt
 								+ ". Estado: ");
-						imprimir(solOpt);
+						imprimir(solOpt);*/
 					}
 				}
 				/*
@@ -59,9 +74,11 @@ class Ejecicio3_1_b {
 				// Restamos el valor correspondiente, para continuar con otra
 				// rama
 				cParcial -= coste(c0, c1, f, solParc, etapa);
+				System.out.println("opcion:"+j+" etapa:"+etapa+" coste:"+cota);
 			} else {
-				System.out.print("Poda con cota: " + nCota + ". Estado: ");
-				imprimir2(solParc, etapa);
+				
+				// System.out.print("Poda con cota: " + nCota + ". Estado: ");
+				// imprimir2(solParc, etapa);
 			}
 		}
 		return cOpt;
