@@ -41,17 +41,17 @@ class Ejecicio3_1_b {
 						cOptimo = cParcial;
 						for (int k = 0; k < solParcial.length; k++)
 							solOptima[k] = solParcial[k];
-						System.out.print("Nuevo coste mínimo: " + cOptimo
-								+ ". Estado: ");
+						System.out.print("Nuevo coste mínimo: " + cOptimo+ ". Estado: ");
 						imprimir(solOptima);
 					}
 				} else
-					cOptimo = ryp(coste, i + 1, f, solParcial, cParcial,
-							solOptima, cOptimo, cota);
-
-				cParcial -= gasto;
+					cOptimo = ryp(coste, i + 1, f, solParcial, cParcial,solOptima, cOptimo, cota);
+					cParcial -= gasto;
+					
 			}
+			
 		}
+	
 		return cOptimo;
 	}
 
@@ -65,13 +65,15 @@ class Ejecicio3_1_b {
 		return cota;
 	}
 
-	private static int mini(int[][] coste, int j) {
-		ArrayList resultList = new ArrayList();
-		for (int i = 0; i < coste.length; i++)
-			resultList.add(coste[i][j]);
-		int mini = (int) Collections.min(resultList);
-		return mini;
-	}
+
+	   private static int mini (int[][] coste,int j) {
+		      int min = Integer.MAX_VALUE;
+		      
+		      for (int i=0; i<coste.length; i++)
+		         if (coste[i][j]<min)
+		            min = coste[i][j];
+		      return min;
+	   }
 
 	private static void imprimir(int[] v) {
 		for (int i = 0; i < v.length; i++)
@@ -86,5 +88,6 @@ class Ejecicio3_1_b {
 		int f = 10;
 
 		System.out.println(sedes_RyP(c0, c1, f));
+		System.out.println("numero de nodos creados: " + nodos);
 	}
 }

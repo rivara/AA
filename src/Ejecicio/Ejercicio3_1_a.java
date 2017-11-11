@@ -4,7 +4,7 @@ public class Ejercicio3_1_a {
 
 	static int nodes;
 
-	public static int sedes(int[] c0, int[] c1, int f) {
+	public static int sedes_VA(int[] c0, int[] c1, int f) {
 		int[] solActual = new int[c0.length];
 		int[] solOptimaima = new int[c0.length];
 		int cost[][] = { c0, c1 };
@@ -55,7 +55,7 @@ public class Ejercicio3_1_a {
 		int c0[] = { 1, 3, 20, 30 };
 		int c1[] = { 50, 20, 2, 4 };
 		int f = 10;
-		System.out.println(sedes(c0, c1, f));
+		System.out.println(sedes_VA(c0, c1, f));
 		System.out.println("numero de nodos creados: " + nodes);
 	}
 
