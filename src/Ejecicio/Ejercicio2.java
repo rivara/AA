@@ -1,5 +1,5 @@
-package Ejecicio;
 
+package Ejecicio;
 
 public class Ejercicio2 {
 	/* H1 */

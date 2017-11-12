@@ -1,5 +1,4 @@
 package Ejecicio;
-
 public class Ejercicio1 {
 
 /**

@@ -1,10 +1,4 @@
 package Ejecicio;
-
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 class Ejecicio3_1_b {
 
 	static int nodos;
