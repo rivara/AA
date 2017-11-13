@@ -1,6 +1,5 @@
 
 package Ejecicio;
-
 public class Ejercicio2 {
 	/* H1 */
 	public static int sedes1(int[] c0, int[] c1, int f) {
@@ -53,9 +52,9 @@ public class Ejercicio2 {
 	}
 
 	public static void main(String[] args) {
-		int c0[] = { 3, 8, 5, 2, 4 };
-		int c1[] = { 7, 1, 6, 9, 6 };
-		int f = 5;
+		int c0[] = { 1, 3, 20, 30 };
+		int c1[] = { 50, 20, 2, 4 };
+		int f = 10;
 		System.out.println(sedes1(c0, c1, f));
 		System.out.println(sedes2(c0, c1, f));
 
