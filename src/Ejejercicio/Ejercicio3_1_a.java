@@ -1,4 +1,4 @@
-package Ejecicio;
+package Ejejercicio;
 public class Ejercicio3_1_a {
 
 	static int nodes;
